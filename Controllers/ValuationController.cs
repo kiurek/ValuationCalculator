@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,12 @@ namespace ValuationCalculator.Controllers
 {
     public class ValuationController : Controller
     {
+        private static List<SelectListItem> SelectItems = new List<SelectListItem>()
+        {
+            new SelectListItem(){Value = "1", Text = "Wykończenie B", Selected = false },
+            new SelectListItem(){Value = "2", Text = "Wykończenie E", Selected = false }
+        };
+
         private static IList<ValuationModel> valuations = new List<ValuationModel>()
         {
           
@@ -23,26 +30,45 @@ namespace ValuationCalculator.Controllers
         // GET: ValuationController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(valuations.FirstOrDefault(x => x.ValuationId == id));
         }
 
         // GET: ValuationController/Create
         public ActionResult Create()
         {
-            return View(new ValuationModel());
+            ViewBag.Model = SelectItems;
+
+            return View(new ValuationModel() { Width = 1, Height = 1 }) ;
         }
 
         // POST: ValuationController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ValuationModel valuationModel, string calculate)
+        public ActionResult Create(ValuationModel valuationModel)
         {
-            if (calculate == "pricing")
-            {
-                valuationModel.Price = valuationModel.Height + valuationModel.Width;
-            }
+
+            valuationModel.Price = valuationModel.Height * valuationModel.Width;
             valuationModel.ValuationId = valuations.Count + 1;
             valuations.Add(valuationModel);
+            return RedirectToAction(nameof(Index));
+        }
+
+        //GET: ValuationController/Edit/5
+        public ActionResult Edit(int id)
+        {
+            return View(valuations.FirstOrDefault(x => x.ValuationId == id));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, ValuationModel valuationModel)
+        {
+            ValuationModel valuation = valuations.FirstOrDefault(x => x.ValuationId == id);
+            valuation.Color = valuationModel.Color;
+            valuation.Thickness = valuationModel.Thickness;
+            valuation.Height = valuationModel.Height;
+            valuation.Width = valuationModel.Width;
+            valuation.Amount = valuationModel.Amount;
             return RedirectToAction(nameof(Index));
         }
 

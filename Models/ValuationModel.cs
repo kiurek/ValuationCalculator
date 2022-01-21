@@ -23,11 +23,11 @@ namespace ValuationCalculator.Models
 
         [DisplayName("Wysokość")]
         [Required(ErrorMessage = "Proszę podać wysokość")]
-        public int Height { get; set; }
+        public decimal Height { get; set; }
 
         [DisplayName("Szerokość")]
         [Required(ErrorMessage = "Proszę podać szerokość")]
-        public int Width { get; set; }
+        public decimal Width { get; set; }
 
         
         [DisplayName("Ilość")]
@@ -35,7 +35,7 @@ namespace ValuationCalculator.Models
 
 
         [DisplayName("Cena")]
-        public int Price { get; set; }
+        public decimal Price { get; set; }
 
 
     }

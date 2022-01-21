@@ -34,5 +34,10 @@ namespace ValuationCalculator.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public ValuationModel Get(int valuationId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

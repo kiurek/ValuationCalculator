@@ -49,7 +49,7 @@
                 @Html.DisplayFor(modelItem => item.Amount)
             </td>
             <td>
-                @Html.ActionLink("Szczegóły", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Szczegóły", "Details", new { id = item.ValuationId }) |
                 @Html.ActionLink("Usuń", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
