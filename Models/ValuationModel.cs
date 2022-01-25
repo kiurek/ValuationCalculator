@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ValuationCalculator.Models
 {
@@ -13,30 +13,33 @@ namespace ValuationCalculator.Models
         public int ValuationId { get; set; }
 
         [DisplayName("Wzór")]
+        [Required(ErrorMessage = "Proszę wybrać model")]
         public string Model { get; set; }
 
         [DisplayName("Kolor")]
+        [Required(ErrorMessage = "Proszę wybrać kolor")]
         public int Color { get; set; }
 
-        [DisplayName("Grubość")]
+        [DisplayName("Grubość(podana w milimetrach)")]
+        [Required(ErrorMessage = "Proszę wybrać grubość")]
         public int Thickness { get; set; }
 
-        [DisplayName("Wysokość")]
+        [DisplayName("Wysokość(w metrach)")]
         [Required(ErrorMessage = "Proszę podać wysokość")]
+        [Range(0.10, 2.75, ErrorMessage = "Maksymalna szerokość wynosi 2.75 metra")]
         public decimal Height { get; set; }
 
-        [DisplayName("Szerokość")]
+        [DisplayName("Szerokość(w metrach)")]
         [Required(ErrorMessage = "Proszę podać szerokość")]
+        [Range(0.10, 1.25, ErrorMessage = "Maksymalna szerokość wynosi 1.25 metra")]
         public decimal Width { get; set; }
-
         
         [DisplayName("Ilość")]
+        [Required]
         public int Amount { get; set; }
 
 
         [DisplayName("Cena")]
-        public decimal Price { get; set; }
-
-
+        public decimal FinalPrice { get; set; }
     }
 }

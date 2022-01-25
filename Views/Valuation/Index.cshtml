@@ -7,7 +7,7 @@
 <h1>Zamówienie</h1>
 
 <p>
-    <a asp-action="Create">Dodaj element</a>
+    <a type="button" class="btn btn-outline-warning" asp-action="Create">Dodaj element</a>
 </p>
 <table class="table">
     <thead>
@@ -22,7 +22,7 @@
                 @Html.DisplayNameFor(model => model.Color)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                @Html.DisplayNameFor(model => model.FinalPrice)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Amount)
@@ -31,7 +31,8 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.ValuationId)
@@ -43,16 +44,24 @@
                 @Html.DisplayFor(modelItem => item.Color)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Price)
+                @Html.DisplayFor(modelItem => item.FinalPrice)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Amount)
             </td>
             <td>
-                @Html.ActionLink("Szczegóły", "Details", new { id = item.ValuationId }) |
-                @Html.ActionLink("Usuń", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Szczegóły", "Details", new { id = item.ValuationId }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Usuń", "Delete", new { id = item.ValuationId }, new { @class = "btn btn-warning" })
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>
+<div class="row">
+    <div class="col-8">@Html.ActionLink("Podsumowanie zamówienia", "Summary", new { /*id = item.ValuationId*/ }, new { @class = "btn btn-outline-warning" })
+    </div>
+    <div class="col-4">
+        <h5>Wartość zamówienia: @Model.Sum(i => i.FinalPrice * i.Amount) złotych</h5>
+    </div>
+</div>
+

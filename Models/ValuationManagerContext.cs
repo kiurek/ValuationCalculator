@@ -8,10 +8,14 @@ namespace ValuationCalculator.Models
 {
     public class ValuationManagerContext : DbContext
     {
-        public ValuationManagerContext(DbContextOptions options) : base(options)
+        public ValuationManagerContext(DbContextOptions<ValuationManagerContext> options) : base(options)
         {
         }
 
-        public DbSet<ValuationModel> Valuations { get; set; }
+        public DbSet<ModelClass> WindowsillsModels { get; set; }
+
+        public DbSet<ColorsClass> Colors { get; set; }
+
+        public DbSet<ThicknessClass> Thicknesses { get; set; }
     }
 }

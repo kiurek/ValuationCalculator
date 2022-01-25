@@ -1,10 +1,12 @@
 ﻿@model ValuationCalculator.Models.ValuationModel
 
-@{
-    ViewData["Title"] = "Details";
+@{ 
+    ViewData["Title"] = "Delete";
 }
 
-<h1>Szczegóły elementu</h1>
+<h1>Usuwanie</h1>
+
+<h3>Czy na pewno chcesz usunąć ten element?</h3>
 
 <div>
     <hr />
@@ -40,8 +42,9 @@
             @Html.DisplayFor(model => model.Width)
         </dd>
     </dl>
-</div>
-<div>
-    @Html.ActionLink("Edytuj", "Edit", new { id = Model.ValuationId }, new { @class = "btn btn-warning"}) 
-    <a type="button" class="btn btn-outline-warning" asp-action="Index">Powrót do zamówienia</a>
+
+    <form asp-action="Delete">
+        <input type="submit" value="Usuń" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-primary">Powrót do listy</a>
+    </form>
 </div>

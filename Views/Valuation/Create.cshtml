@@ -1,8 +1,10 @@
 ﻿@model ValuationCalculator.Models.ValuationModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewBag.Title = "Create";
 }
+
+
 
 <h2>Wycena</h2>
 
@@ -14,26 +16,23 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Model" class="control-label"></label>
-                <select asp-items=@ViewBag.Model>
-                    @*<option value="B">Wykończenie B</option>
-                    <option value="C">Wykończenie C</option>
-                    <option value="E">Wykończenie E</option>
-                    <option value="F">Wykończenie F</option>
-                    <option value="G">Wykończenie G</option>
-                    <option value="H">Wykończenie H</option>
-                    <option value="I">Wykończenie I</option>*@
-                    
+                <select class="form-control" asp-for="Model" asp-items="@(new SelectList(ViewBag.Models,"Desciption", "Desciption"))">
+                    <option selected>Wybierz Model</option>
                 </select>
                 <span asp-validation-for="Model" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Color" class="control-label"></label>
-                <input asp-for="Color" class="form-control" />
+                <select class="form-control" asp-for="Color" asp-items="@(new SelectList(ViewBag.Colors,"FoilID", "FoilID"))">
+                    <option selected>Wybierz kolor</option>
+                </select>
                 <span asp-validation-for="Color" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div>
                 <label asp-for="Thickness" class="control-label"></label>
-                <input asp-for="Thickness" class="form-control" />
+                <select class="form-control" asp-for="Thickness" asp-items="@(new SelectList(ViewBag.Thicknesses,"Thickness", "Thickness"))">
+                    <option selected>Wybierz grubość</option>
+                </select>
                 <span asp-validation-for="Thickness" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -48,18 +47,18 @@
             </div>
             <div class="form-group">
                 <label asp-for="Amount" class="control-label"></label>
-                <input asp-for="Amount" class="form-control" />
+                <input asp-for="Amount" class="form-control"/>
                 <span asp-validation-for="Amount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Wyceń" class="btn btn-primary" id="pricing" name="calculate" />
+                <button class="btn btn-warning">Dodaj</button>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Wróć do listy zamówień</a>
+    <a type="button" class="btn btn-outline-warning" asp-action="Index">Wróć do listy zamówień</a>
 </div>
 
 @section Scripts {
