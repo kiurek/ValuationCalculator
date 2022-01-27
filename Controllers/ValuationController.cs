@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using ValuationCalculator.Models;
 
 namespace ValuationCalculator.Controllers
 {
+    //[Authorize]
     public class ValuationController : Controller
     {
         private readonly ValuationManagerContext _cc;

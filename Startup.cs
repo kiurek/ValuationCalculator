@@ -28,6 +28,7 @@ namespace ValuationCalculator
             services.AddControllersWithViews();
             services.AddDbContext<ValuationManagerContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("ValuationCalculatorDatabase")));
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +49,7 @@ namespace ValuationCalculator
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -55,6 +57,7 @@ namespace ValuationCalculator
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Valuation}/{action=Create}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }
