@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
 
 namespace ValuationCalculator.Models
 {
@@ -20,6 +21,7 @@ namespace ValuationCalculator.Models
         [Required(ErrorMessage = "Proszę wybrać kolor")]
         public int Color { get; set; }
 
+
         [DisplayName("Grubość(podana w milimetrach)")]
         [Required(ErrorMessage = "Proszę wybrać grubość")]
         public int Thickness { get; set; }
@@ -27,19 +29,18 @@ namespace ValuationCalculator.Models
         [DisplayName("Wysokość(w metrach)")]
         [Required(ErrorMessage = "Proszę podać wysokość")]
         [Range(0.10, 2.75, ErrorMessage = "Maksymalna szerokość wynosi 2.75 metra")]
-        public decimal Height { get; set; }
+        public double Height { get; set; }
 
         [DisplayName("Szerokość(w metrach)")]
         [Required(ErrorMessage = "Proszę podać szerokość")]
         [Range(0.10, 1.25, ErrorMessage = "Maksymalna szerokość wynosi 1.25 metra")]
-        public decimal Width { get; set; }
+        public double Width { get; set; }
         
         [DisplayName("Ilość")]
         [Required]
         public int Amount { get; set; }
 
-
         [DisplayName("Cena")]
-        public decimal FinalPrice { get; set; }
+        public double FinalPrice { get; set;}
     }
 }

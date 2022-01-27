@@ -1,0 +1,76 @@
+﻿@model IEnumerable<ValuationCalculator.Models.ValuationModel>
+
+@{
+    ViewData["Title"] = "Summary";
+}
+
+<h1>Podsumowanie</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ValuationId)
+            </th>
+            <th>
+                Wykończenie
+            </th>
+            <th>
+                Kolor
+            </th>
+            <th>
+                Grubość
+            </th>
+            <th>
+                Wysokość
+            </th>
+            <th>
+                Szerokość
+            </th>
+            <th>
+                Cena jednostkowa
+            </th>
+            <th>
+                Ilość
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValuationId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Thickness)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Height)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Width)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FinalPrice)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="row">
+    <div class="col-8"></div>
+    <div class="col-4">
+        <h5>Wartość końcowa: @Model.Sum(i =>Math.Round(i.FinalPrice * i.Amount)) złotych</h5>
+    </div>
+</div>

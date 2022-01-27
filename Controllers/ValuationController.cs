@@ -63,10 +63,11 @@ namespace ValuationCalculator.Controllers
             var body1 =  Request.Form.TryGetValue("Height", out var Height);
             var body2 = Request.Form.TryGetValue("Width", out var Width);
 
-            var d1 = decimal.Parse(Height.ToString().Replace(".", ","));
-            var d2 = decimal.Parse(Width.ToString().Replace(".", ","));
-
+            var d1 = double.Parse(Height.ToString().Replace(".", ","));
+            var d2 = double.Parse(Width.ToString().Replace(".", ","));
+            
             valuationModel.FinalPrice = d1 * d2;
+
             valuationModel.ValuationId = valuations.Count + 1;
             valuations.Add(valuationModel);
             return RedirectToAction(nameof(Index));
@@ -105,6 +106,11 @@ namespace ValuationCalculator.Controllers
             ValuationModel valuation = valuations.FirstOrDefault(x => x.ValuationId == id);
             valuations.Remove(valuation);
             return RedirectToAction(nameof(Index));
+        }
+
+        public ActionResult Summary()
+        {
+            return View(valuations);
         }
     }
 }
