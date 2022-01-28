@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "mssql3": {
+      "type": "mssql.onprem",
+      "connectionId": "ConnectionStrings:ValuationCalculatorDatabase",
+      "secretStore": "AzureAppSettings"
+    },
+    "mssql2": {
+      "type": "mssql.onprem",
+      "connectionId": "ConnectionStrings:ValuationCalculatorContextConnection",
+      "secretStore": "AzureAppSettings"
+    },
+    "mssql1": {
+      "type": "mssql.onprem",
+      "connectionId": "ConnectionStrings",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}

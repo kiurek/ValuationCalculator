@@ -70,6 +70,7 @@ namespace ValuationCalculator.Controllers
             var d2 = double.Parse(Width.ToString().Replace(".", ","));
             
             valuationModel.FinalPrice = d1 * d2 * myPrice;
+            Math.Round(valuationModel.FinalPrice);
 
             valuationModel.ValuationId = valuations.Count + 1;
             valuations.Add(valuationModel);

@@ -3,13 +3,17 @@
     "secrets1": {
       "type": "secrets"
     },
-    "mssql1": {
+    "mssql3": {
       "type": "mssql",
-      "connectionId": "ConnectionStrings"
+      "connectionId": "ConnectionStrings:ValuationCalculatorDatabase"
     },
     "mssql2": {
       "type": "mssql",
       "connectionId": "ConnectionStrings:ValuationCalculatorContextConnection"
+    },
+    "mssql1": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings"
     }
   }
 }
