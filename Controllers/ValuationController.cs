@@ -14,6 +14,8 @@ namespace ValuationCalculator.Controllers
     //[Authorize]
     public class ValuationController : Controller
     {
+        public Dictionary<int, double> keyValues = new Dictionary<int, double>() { {18, 225.00 }, { 19, 275.00 }, { 22, 235.00 }, { 25, 310 }, { 28, 260 }, { 30, 345.00 } };
+
         private readonly ValuationManagerContext _cc;
 
         public ValuationController(ValuationManagerContext cc)
@@ -60,13 +62,14 @@ namespace ValuationCalculator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ValuationModel valuationModel)
         {
+            double myPrice = keyValues[valuationModel.Thickness];
             var body1 =  Request.Form.TryGetValue("Height", out var Height);
             var body2 = Request.Form.TryGetValue("Width", out var Width);
 
             var d1 = double.Parse(Height.ToString().Replace(".", ","));
             var d2 = double.Parse(Width.ToString().Replace(".", ","));
             
-            valuationModel.FinalPrice = d1 * d2;
+            valuationModel.FinalPrice = d1 * d2 * myPrice;
 
             valuationModel.ValuationId = valuations.Count + 1;
             valuations.Add(valuationModel);
